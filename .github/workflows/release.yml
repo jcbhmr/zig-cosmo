@@ -6,18 +6,7 @@ on:
         type: boolean
 concurrency: ${{ github.workflow }}
 jobs:
-  tagver:
-    outputs:
-      tagver: ${{ steps.tagver.outputs.tagver }}
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - id: tagver
-        run: |
-          tagver=$(grep -Po 'TAGVER=\S+' script | head -n1 | cut -d'=' -f2)
-          echo "tagver=$tagver" >> "$GITHUB_OUTPUT"
   create-release:
-    needs: tagver
     permissions:
       contents: write
     runs-on: ubuntu-latest
@@ -26,7 +15,7 @@ jobs:
       - uses: bjia56/setup-cosmocc@v0.0.3
       # This fakes the from-source build outputs. Building from Zig source takes way too long.
       - env:
-          TAGVER: ${{ needs.tagver.outputs.tagver }}
+          TAGVER: "0.13.0"
         run: |
           wget "https://ziglang.org/download/$TAGVER/zig-windows-x86_64-$TAGVER.zip"
           wget "https://ziglang.org/download/$TAGVER/zig-windows-aarch64-$TAGVER.zip"
@@ -52,14 +41,14 @@ jobs:
           rm "zig-linux-aarch64-$TAGVER.tar.xz"
           rm "zig-freebsd-x86_64-$TAGVER.tar.xz"
       - env:
-          TAGVER: ${{ needs.tagver.outputs.tagver }}
+          TAGVER: "0.13.0"
         run: ./build-zig-ape
       - env:
-          TAGVER: ${{ needs.tagver.outputs.tagver }}
+          TAGVER: "0.13.0"
         run: 7z a zig-ape-$TAGVER.zip zig-ape-$TAGVER/
       - env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TAGVER: ${{ needs.tagver.outputs.tagver }}
+          TAGVER: "0.13.0"
         run: |
           gh release create "$TAGVER" \
             ${{ (inputs.draft && '--draft') || '' }} \
