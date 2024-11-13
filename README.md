@@ -1,6 +1,6 @@
 # Zig as an [Actually Portable Executable](https://justine.lol/ape.html)
 
-📦 All-in-one multiplatform Zig binary
+⚡ All-in-one multiplatform Zig binary
 
 <table align=center><td>
 
