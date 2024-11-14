@@ -58,8 +58,8 @@ int main(int argc, char *argv[]) {
 }
 
 std::filesystem::path user_cache_dir() {
-  auto const appname = std::string("zig");
-  auto const appauthor = std::string("ziglang");
+  auto const appname = std::string("zig-ape");
+  auto const appauthor = std::string("jcbhmr");
   auto const version = std::string(TAGVER);
   if (IsWindows()) {
     auto const localappdata_c_str = std::getenv("LOCALAPPDATA");
