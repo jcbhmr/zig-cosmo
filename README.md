@@ -29,7 +29,7 @@ unzip zig-ape-0.13.0.zip
 2. Extract it.
 3. Rename it to `zig.com` or `zig.exe`. (Windows only)
 
-**https://github.com/jcbhmr/zig/releases/download/0.13.0/zig-ape-0.13.0.zip**
+**https://github.com/jcbhmr/zig-cosmo/releases/download/0.13.0/zig-ape-0.13.0.zip**
 
 The all-in-one binary should work on Windows x86-64, Windows AArch64, macOS x86-64, macOS AArch64, Linux x86-64, Linux AArch64, and FreeBSD x86-64. **For other platforms make sure you check out [Zig's official download page](https://ziglang.org/download/).**
 
